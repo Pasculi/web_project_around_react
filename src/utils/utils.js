@@ -1,5 +1,5 @@
-import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
-import { api } from '../components/Api.js'
+/* import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
+import { api } from '../components/Api.js' */
 
 export const initialCards = [
   {
@@ -64,4 +64,4 @@ export const inputUrlAvatar = document.querySelector('#popup__input-url-avatar')
 export const popupFormAvatar = document.querySelector('.popup-avatar-edit-form');
 export const closeFormAvatar = document.querySelector('.popup-avatar-edit-button-close');
 export const buttonConfirm = document.querySelector('.popup__button-delete');
-export const popupConfirm = new PopupWithConfirmation('.popup-confirm', api);
+/* export const popupConfirm = new PopupWithConfirmation('.popup-confirm', api); */

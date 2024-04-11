@@ -1,11 +1,16 @@
 import React from 'react'
 import imageProfile from '../images/image__profile.jpg'
+import { buttonEditProfile,overlayAvatar, avatarSection, popupEditAvatar, closeFormAvatar } from '../utils/utils.js'
 import '../blocks/Main/Main.css'
+
+console.log(avatarSection)
+console.log(popupEditAvatar)
+console.log(closeFormAvatar)
 
 export default function Main() {
 
   const handleEditAvatarClick = () => {
-    const editAvatar = document.querySelector('.profile__avatar-edit');
+    const editAvatar = document.querySelector('.profile__avatar');
     editAvatar.classList.add('popup-avatar-edit--show')
   }
   const handleEditProfileClick = () => { 
@@ -17,7 +22,27 @@ export default function Main() {
     const editPlace = document.querySelector('.popup-place');
     editPlace.classList.add('popup--show')
   }
+
+  function addOverlayAvatar() {
+    buttonEditProfile.classList.add('profile__avatar-edit--show');
+    overlayAvatar.classList.add('profile__overlay-avatar--show')
+  }
+  function removeOverlayAvatar() {
+    buttonEditProfile.classList.remove('profile__avatar-edit--show')
+    overlayAvatar.classList.remove('profile__overlay-avatar--show')
+  }
   
+  avatarSection.addEventListener('mouseover', addOverlayAvatar)
+  
+avatarSection.addEventListener('mouseout', removeOverlayAvatar)
+  
+  
+  buttonEditProfile.addEventListener('click', () => {
+    popupEditAvatar.classList.add('popup-avatar-edit--show');
+  })
+  closeFormAvatar.addEventListener('click', () => {
+    popupEditAvatar.classList.remove('popup-avatar-edit--show');
+  })
   return (
     <>
       <section className="profile">

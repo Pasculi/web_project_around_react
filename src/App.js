@@ -19,7 +19,7 @@ function App() {
 
         </div>
 
-
+{/* 
         <template className="card">
           <div className="card__place">
             <button className="card__place-button--delete">
@@ -38,7 +38,7 @@ function App() {
               </div>
             </div>
           </div>
-        </template>
+        </template> */}
 
 
         <div className="popup popup-profile popup-img-close-profile" id="profile">
