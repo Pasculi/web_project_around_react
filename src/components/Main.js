@@ -3,20 +3,13 @@ import imageProfile from '../images/image__profile.jpg'
 import '../blocks/Main/Main.css'
 
 
-const avatarSection = document.querySelector('.profile__avatar');
-const popupEditAvatar = document.querySelector('#popup-avatar-edit');
-const closeFormAvatar = document.querySelector('.popup-avatar-edit-button-close');
-const buttonEditProfile = document.querySelector('.profile__avatar-edit');
-const overlayAvatar = document.querySelector('.profile__overlay-avatar');
-console.log(avatarSection)
-console.log(popupEditAvatar)
-console.log(closeFormAvatar)
 
 export default function Main() {
 
   const handleEditAvatarClick = () => {
-    const editAvatar = document.querySelector('.profile__avatar');
-    editAvatar.classList.add('popup-avatar-edit--show')
+    const popupAvatar = document.querySelector('.popup-avatar-edit');
+    popupAvatar.classList.add('popup--show');
+    console.log(popupAvatar);
   }
   const handleEditProfileClick = () => {
     const editProfile = document.querySelector('.popup-profile');
@@ -28,26 +21,6 @@ export default function Main() {
     editPlace.classList.add('popup--show')
   }
 
-  function addOverlayAvatar() {
-    buttonEditProfile.classList.add('profile__avatar-edit--show');
-    overlayAvatar.classList.add('profile__overlay-avatar--show')
-  }
-  function removeOverlayAvatar() {
-    buttonEditProfile.classList.remove('profile__avatar-edit--show')
-    overlayAvatar.classList.remove('profile__overlay-avatar--show')
-  }
-
-  avatarSection.addEventListener('mouseover', addOverlayAvatar)
-
-  avatarSection.addEventListener('mouseout', removeOverlayAvatar)
-
-
-  buttonEditProfile.addEventListener('click', () => {
-    popupEditAvatar.classList.add('popup-avatar-edit--show');
-  })
-  closeFormAvatar.addEventListener('click', () => {
-    popupEditAvatar.classList.remove('popup-avatar-edit--show');
-  })
   return (
     <>
       <section className="profile">
