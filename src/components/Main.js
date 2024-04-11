@@ -1,8 +1,13 @@
 import React from 'react'
 import imageProfile from '../images/image__profile.jpg'
-import { buttonEditProfile,overlayAvatar, avatarSection, popupEditAvatar, closeFormAvatar } from '../utils/utils.js'
 import '../blocks/Main/Main.css'
 
+
+const avatarSection = document.querySelector('.profile__avatar');
+const popupEditAvatar = document.querySelector('#popup-avatar-edit');
+const closeFormAvatar = document.querySelector('.popup-avatar-edit-button-close');
+const buttonEditProfile = document.querySelector('.profile__avatar-edit');
+const overlayAvatar = document.querySelector('.profile__overlay-avatar');
 console.log(avatarSection)
 console.log(popupEditAvatar)
 console.log(closeFormAvatar)
@@ -13,7 +18,7 @@ export default function Main() {
     const editAvatar = document.querySelector('.profile__avatar');
     editAvatar.classList.add('popup-avatar-edit--show')
   }
-  const handleEditProfileClick = () => { 
+  const handleEditProfileClick = () => {
     const editProfile = document.querySelector('.popup-profile');
     editProfile.classList.add('popup--show')
   }
@@ -31,12 +36,12 @@ export default function Main() {
     buttonEditProfile.classList.remove('profile__avatar-edit--show')
     overlayAvatar.classList.remove('profile__overlay-avatar--show')
   }
-  
+
   avatarSection.addEventListener('mouseover', addOverlayAvatar)
-  
-avatarSection.addEventListener('mouseout', removeOverlayAvatar)
-  
-  
+
+  avatarSection.addEventListener('mouseout', removeOverlayAvatar)
+
+
   buttonEditProfile.addEventListener('click', () => {
     popupEditAvatar.classList.add('popup-avatar-edit--show');
   })
