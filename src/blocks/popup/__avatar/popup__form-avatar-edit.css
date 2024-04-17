@@ -1,4 +1,4 @@
-.popup-avatar-edit-form{
+.popup__form-avatar-edit{
   display         : flex;
 flex-direction  : column;
 justify-content : space-between;
@@ -10,11 +10,12 @@ position        : absolute;
 bottom          : 1;
 border-radius   : 10px;
 padding         : 0 36px;
+margin-top:40px;
 box-sizing      : border-box;
 }
 
 @media screen and (max-width:812px) {
-  .popup-avatar-edit-form {
+  .popup__form-avatar-edit {
     top   : 35px;
     left  : 60;
     width : 300px;

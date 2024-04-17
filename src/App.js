@@ -4,14 +4,59 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import imageClose from './images/vector__close.png'
+import PopupWithForm from './components/PopupWithForm';
 
 
 function App() {
+  /* const [name, setName] = useState(''); */
+
+
+
+
+
   return (
     <>
       <div className="root__container">
         <Header />
-        <Main/>
+        <Main />
+        {/* <PopupWithForm name='profile' titulo='Edit Profile' form='form' button='Guardar'>
+          <div className="popup__grupo-input">
+            <input className="popup__input" type="text" name="name-user" id="popup__input-profile" placeholder="Nombre"
+              minLength="2" maxLength="40" required value="Jacques Cousteau" />
+            <span className="popup__input-error popup__input-profile-error"></span>
+          </div>
+
+          <div className="popup__grupo-input">
+            <input className="popup__input" type="text" name="job-user" id="popup__input-about" placeholder="Acerca de mi"
+              minLength="2" maxLength="200" required value="Explorador" />
+            <span className="popup__input-error popup__input-about-error"></span>
+          </div>
+        </PopupWithForm> */}
+
+        {/* <PopupWithForm name='place' titulo='Edit Place' form='form' button='Guardar'>
+          <div className="popup__grupo-input">
+            <input className="popup__input" type="text" name="name-place" id="popup__input-name-place" placeholder="Title"
+              minLength="2" maxLength="30" required />
+            <span className="popup__input-error popup__input-name-place-error"></span>
+          </div>
+
+          <div className="popup__grupo-input">
+            <input className="popup__input" type="url" name="url-place" id="popup__input-url-place"
+              placeholder="Enlace a la imagen" required />
+            <span className="popup__input-error popup__input-url-place-error"></span>
+          </div>
+        </PopupWithForm> */}
+
+        {/* <PopupWithForm name='avatar-edit' titulo='Cambiar foto de perfil' form='form-avatar' button='Guardar'>
+           <div className="popup__grupo-input">
+                <input className="popup__input" type="url" name="url-avatar" id="popup__input-url-avatar" placeholder="Avatar" required />
+                <span className="popup__input-error popup__input-url-avatar-error"></span>
+              </div>
+        </PopupWithForm> */}
+
+        <PopupWithForm name='confirm' titulo='¿Estas Seguro?' button='Sí' form='form-confirm'/>
+          
+
        
          <div className="container-card">
 
@@ -117,8 +162,8 @@ function App() {
 
 
         <div className="popup popup-confirm">
-          <div className="popup-confirm-container">
-            <button className="btn popup__button-close popup-confirm-button-close">
+          <div className="popup__container-confirm">
+            <button className="btn popup__button-close popup-button-close-confirm">
               <img className="popup__image-close popup-confirm-image-close" src={imageClose} alt="Cerrar popup" />
             </button>
             <form action="" className="popup-confirm-from">

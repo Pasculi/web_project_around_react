@@ -1,8 +1,7 @@
-.popup-avatar-edit-button-close{
-
+.popup__button-close-avatar-edit{
   width           : 40px;
   position        : absolute;
-  top             : 0;
+  top             : 0px;
   right           : 0;
   background-color: transparent;
   border          : none;
@@ -10,7 +9,7 @@
 }
 
 @media screen and (max-width: 594px) {
-  .popup-avatar-edit-button-close {
+  .popup__button-close-avatar-edit {
     width: 26px;
     right: 25px;
   }
