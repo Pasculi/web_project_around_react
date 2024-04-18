@@ -2,12 +2,12 @@ import React from 'react'
 import imageClose from '../images/vector__close.png';
 
 
-const PopupWithForm = ({isOpen, name, titulo, form, button, children}) => {
+const PopupWithForm = ({ isOpen, name, titulo, form, button, children, onClose}) => {
   return (
     <>
       <div className={`popup popup-${name} popup-img-close-${name} ${isOpen ? 'popup--show' : ''} `  } id={`${name}`}>
         <div className={`popup__container-${form}`}>
-          <button className={`btn popup__button-close popup__button-close-${name}`}>
+          <button className={`btn popup__button-close popup__button-close-${name}`} onClick={onClose} >
             <img className="popup__image-close" src={imageClose} alt="Cerrar popup"
               id={`img-close-${name}`} />
           </button>

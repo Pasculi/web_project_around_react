@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import imageProfile from '../images/image__profile.jpg'
 import '../blocks/Main/Main.css'
+import {api} from '../components/utils/api.js'
 
 
-
-export default function Main(onEditProfileClick, onAddPlaceClick, onEditAvatarClick) {
+export default function Main({onEditProfileClick, onAddPlaceClick, onEditAvatarClick}) {
+  
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
 
   
+
+  console.log(api)
   return (
     <>
       <section className="profile">
