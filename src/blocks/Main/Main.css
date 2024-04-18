@@ -121,7 +121,6 @@
   justify-content: center;
 
 }
-
 @media screen and (max-width: 812px) {
   .profile__presentation {
     align-items: flex-start;

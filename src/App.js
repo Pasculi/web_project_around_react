@@ -8,7 +8,21 @@ import PopupWithForm from './components/PopupWithForm';
 
 
 function App() {
-  /* const [name, setName] = useState(''); */
+  const handleEditAvatarClick = () => {
+    const popupAvatar = document.querySelector('.popup-avatar-edit');
+    popupAvatar.classList.add('popup--show');
+    console.log(popupAvatar);
+  }
+  const handleEditProfileClick = () => {
+    const editProfile = document.querySelector('.popup-profile');
+    editProfile.classList.add('popup--show')
+  }
+
+  const handleAddPlaceClick = () => {
+    const editPlace = document.querySelector('.popup-place');
+    editPlace.classList.add('popup--show')
+  }
+
 
 
 
@@ -18,7 +32,7 @@ function App() {
     <>
       <div className="root__container">
         <Header />
-        <Main />
+        <Main onEditProfileClick={handleEditProfileClick} onAddPlaceClick={handleAddPlaceClick} onEditAvatarClick={handleEditAvatarClick } />
         {/* <PopupWithForm name='profile' titulo='Edit Profile' form='form' button='Guardar'>
           <div className="popup__grupo-input">
             <input className="popup__input" type="text" name="name-user" id="popup__input-profile" placeholder="Nombre"
