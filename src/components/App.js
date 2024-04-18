@@ -1,39 +1,45 @@
 
-import './index.css';
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
-import imageClose from './images/vector__close.png'
-import PopupWithForm from './components/PopupWithForm';
+import '../index.css';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
+import PopupWithForm from './PopupWithForm';
+import { useState } from 'react';
 
 
 function App() {
+
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState (false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
+
+
   const handleEditAvatarClick = () => {
-    const popupAvatar = document.querySelector('.popup-avatar-edit');
-    popupAvatar.classList.add('popup--show');
-    console.log(popupAvatar);
+    setIsEditAvatarPopupOpen(true)
   }
   const handleEditProfileClick = () => {
-    const editProfile = document.querySelector('.popup-profile');
-    editProfile.classList.add('popup--show')
+    setIsEditProfilePopupOpen(true)    
   }
 
   const handleAddPlaceClick = () => {
-    const editPlace = document.querySelector('.popup-place');
-    editPlace.classList.add('popup--show')
+    setIsAddPlacePopupOpen(true)   
   }
 
-
-
-
-
+  const handleCardClick = (e) =>{
+    console.log(e.target) 
+  }
 
   return (
     <>
       <div className="root__container">
         <Header />
-        <Main onEditProfileClick={handleEditProfileClick} onAddPlaceClick={handleAddPlaceClick} onEditAvatarClick={handleEditAvatarClick } />
-        {/* <PopupWithForm name='profile' titulo='Edit Profile' form='form' button='Guardar'>
+        <Main 
+        onEditProfileClick={handleEditProfileClick} 
+        onAddPlaceClick={handleAddPlaceClick} 
+        onEditAvatarClick={handleEditAvatarClick } 
+        onCardClick={handleCardClick}/>
+
+        <PopupWithForm name='profile' titulo='Edit Profile' form='form' button='Guardar'>
           <div className="popup__grupo-input">
             <input className="popup__input" type="text" name="name-user" id="popup__input-profile" placeholder="Nombre"
               minLength="2" maxLength="40" required value="Jacques Cousteau" />
@@ -45,9 +51,9 @@ function App() {
               minLength="2" maxLength="200" required value="Explorador" />
             <span className="popup__input-error popup__input-about-error"></span>
           </div>
-        </PopupWithForm> */}
+        </PopupWithForm>
 
-        {/* <PopupWithForm name='place' titulo='Edit Place' form='form' button='Guardar'>
+        <PopupWithForm name='place' titulo='Edit Place' form='form' button='Guardar'>
           <div className="popup__grupo-input">
             <input className="popup__input" type="text" name="name-place" id="popup__input-name-place" placeholder="Title"
               minLength="2" maxLength="30" required />
@@ -59,14 +65,14 @@ function App() {
               placeholder="Enlace a la imagen" required />
             <span className="popup__input-error popup__input-url-place-error"></span>
           </div>
-        </PopupWithForm> */}
+        </PopupWithForm>
 
-        {/* <PopupWithForm name='avatar-edit' titulo='Cambiar foto de perfil' form='form-avatar' button='Guardar'>
+        <PopupWithForm name='avatar-edit' titulo='Cambiar foto de perfil' form='form-avatar' button='Guardar'>
            <div className="popup__grupo-input">
                 <input className="popup__input" type="url" name="url-avatar" id="popup__input-url-avatar" placeholder="Avatar" required />
                 <span className="popup__input-error popup__input-url-avatar-error"></span>
               </div>
-        </PopupWithForm> */}
+        </PopupWithForm>
 
         <PopupWithForm name='confirm' titulo='¿Estas Seguro?' button='Sí' form='form-confirm'/>
           
@@ -100,7 +106,7 @@ function App() {
         </template> */}
 
 
-        <div className="popup popup-profile popup-img-close-profile" id="profile">
+       {/*  <div className="popup popup-profile popup-img-close-profile" id="profile">
           <div className="popup__container">
             <button className="btn popup__button-close popup__button-close-profile">
               <img className="popup__image-close" src={imageClose} alt="Cerrar popup"
@@ -209,7 +215,7 @@ function App() {
             </form>
           </div>
         </div>
-
+ */}
 
 
 
