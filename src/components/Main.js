@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import imageProfile from '../images/image__profile.jpg'
+import trash from '../images/vector__eliminar.png'
 import '../blocks/Main/Main.css'
 import {api} from '../components/utils/api.js'
 
@@ -9,6 +9,8 @@ export default function Main({onEditProfileClick, onAddPlaceClick, onEditAvatarC
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
+  const [cards, setCards] = useState([])
+
 
   useEffect(() => {
     api.getUserInfo()
@@ -44,7 +46,47 @@ export default function Main({onEditProfileClick, onAddPlaceClick, onEditAvatarC
       </section>
       <div className="container-card">
 
-    <h1>Hola</h1>
+    {useEffect(() => {
+    const section = document.querySelector('.container-card')
+    api.getInitialCards()
+      .then((res) => {
+        setCards(res);
+
+        console.log(setCards)
+        section.append(
+
+
+          /* lists?.map((card, index) => {
+            {
+              <div key={index} class="card">
+                <div class="card__place">
+                  <button class="card__place-button--delete">
+                    <img class="card__place-imagen-trash" src={trash} alt="Eliminar" />
+                  </button>
+                  <div class="card__place-container-image">
+                    <img class="card__place-image-place"
+                      src={card.link}
+                      alt={card.name} />
+                  </div>
+                  <div class="card__place-footer">
+                    <h2 class="card__place-name">{card.name}</h2>
+                    <div class="card__place-like-section">
+                      <button class="card__place-button--like"></button>
+                      <span class="card__place-like-counter">{card.likes.length}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+            console.log(index)
+            console.log(card.name)
+            console.log(card.link)
+            console.log(card.likes.length)
+          }) */
+        )
+      })
+  }, [])
+}
 
       </div>
     </>

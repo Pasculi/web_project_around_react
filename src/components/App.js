@@ -4,27 +4,29 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
+
 
 
 function App() {
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
 
-  const closeAllPopups = () => { 
+
+
+  const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsEditAvatarPopupOpen(false)
   };
-  
 
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true)
-    console.log("handleEditAvatarClick")
   }
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true)
@@ -38,6 +40,7 @@ function App() {
     console.log(e.target)
   }
 
+  
   return (
     <>
       <div className="root__container">
@@ -48,7 +51,7 @@ function App() {
           onEditAvatarClick={handleEditAvatarClick}
           onCardClick={handleCardClick} />
 
-        <PopupWithForm name='profile' titulo='Edit Profile' form='form' button='Guardar' isOpen={isEditProfilePopupOpen} onClose={ closeAllPopups }>
+        <PopupWithForm name='profile' titulo='Edit Profile' form='form' button='Guardar' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
           <div className="popup__grupo-input">
             <input className="popup__input" type="text" name="name-user" id="popup__input-profile" placeholder="Nombre"
               minLength="2" maxLength="40" required value="Jacques Cousteau" />
@@ -88,6 +91,8 @@ function App() {
 
 
         <div className="container-card">
+
+          
 
         </div>
 
