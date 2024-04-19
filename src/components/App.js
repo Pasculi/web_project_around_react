@@ -4,8 +4,10 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagenPopup'
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import Card from './Card';
 
 
 
@@ -14,6 +16,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(false);
 
 
 
@@ -22,6 +25,7 @@ function App() {
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsEditAvatarPopupOpen(false)
+    setSelectedCard(false)
   };
 
 
@@ -36,8 +40,9 @@ function App() {
     setIsAddPlacePopupOpen(true)
   }
 
-  const handleCardClick = (e) => {
-    console.log(e.target)
+  const handleCardClick = () => {
+    console.log('Click Card')
+    setSelectedCard(true)
   }
 
   
@@ -50,17 +55,19 @@ function App() {
           onAddPlaceClick={handleAddPlaceClick}
           onEditAvatarClick={handleEditAvatarClick}
           onCardClick={handleCardClick} />
+        
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+
+        <Card />
 
         <PopupWithForm name='profile' titulo='Edit Profile' form='form' button='Guardar' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
           <div className="popup__grupo-input">
-            <input className="popup__input" type="text" name="name-user" id="popup__input-profile" placeholder="Nombre"
-              minLength="2" maxLength="40" required value="Jacques Cousteau" />
+            <input className="popup__input" type="text" name="name-user" id="popup__input-profile" minLength="2" maxLength="40" required placeholder="Jacques Cousteau" />
             <span className="popup__input-error popup__input-profile-error"></span>
           </div>
 
           <div className="popup__grupo-input">
-            <input className="popup__input" type="text" name="job-user" id="popup__input-about" placeholder="Acerca de mi"
-              minLength="2" maxLength="200" required value="Explorador" />
+            <input className="popup__input" type="text" name="job-user" id="popup__input-about" minLength="2" maxLength="200" required placeholder="Explorador" />
             <span className="popup__input-error popup__input-about-error"></span>
           </div>
         </PopupWithForm>
@@ -88,13 +95,6 @@ function App() {
 
         <PopupWithForm name='confirm' titulo='¿Estas Seguro?' button='Sí' form='form-confirm' onClose={closeAllPopups} />
 
-
-
-        <div className="container-card">
-
-          
-
-        </div>
 
 
         <Footer />

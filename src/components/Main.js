@@ -4,7 +4,7 @@ import '../blocks/Main/Main.css'
 import {api} from '../components/utils/api.js'
 
 
-export default function Main({onEditProfileClick, onAddPlaceClick, onEditAvatarClick}) {
+export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick, onCardClick }) {
   
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
@@ -22,7 +22,15 @@ export default function Main({onEditProfileClick, onAddPlaceClick, onEditAvatarC
       .catch(err => {
         console.war("Error: " + err);
       });
-  },[])
+  }, []);
+  useEffect(() => {
+
+    api.getInitialCards()
+      .then((res) => {
+        setCards(res);
+
+      })
+  }, [])
 
   return (
     <>
@@ -45,48 +53,31 @@ export default function Main({onEditProfileClick, onAddPlaceClick, onEditAvatarC
         <button className="btn bt-place profile__author-button-add-place" onClick={onAddPlaceClick} id="btn_place"></button>
       </section>
       <div className="container-card">
-
-    {useEffect(() => {
-    const section = document.querySelector('.container-card')
-    api.getInitialCards()
-      .then((res) => {
-        setCards(res);
-
-        console.log(setCards)
-        section.append(
-
-
-          /* lists?.map((card, index) => {
-            {
-              <div key={index} class="card">
-                <div class="card__place">
-                  <button class="card__place-button--delete">
-                    <img class="card__place-imagen-trash" src={trash} alt="Eliminar" />
+        {
+          cards?.map((card, index) => {
+            return (
+              <div key={ index} className="card">
+                <div className="card__place">
+                  <button className="card__place-button--delete">
+                    <img className="card__place-imagen-trash" src={trash} alt="Eliminar" />
                   </button>
-                  <div class="card__place-container-image">
-                    <img class="card__place-image-place"
+                  <div className="card__place-container-image">
+                    <img className="card__place-image-place"
                       src={card.link}
-                      alt={card.name} />
+                      alt={card.name} onClick={onCardClick} />
                   </div>
-                  <div class="card__place-footer">
-                    <h2 class="card__place-name">{card.name}</h2>
-                    <div class="card__place-like-section">
-                      <button class="card__place-button--like"></button>
-                      <span class="card__place-like-counter">{card.likes.length}</span>
+                  <div className="card__place-footer">
+                    <h2 className="card__place-name">{ card.name}</h2>
+                    <div className="card__place-like-section">
+                      <button className="card__place-button--like"></button>
+                      <span className="card__place-like-counter">{card.likes.length }</span>
                     </div>
                   </div>
                 </div>
               </div>
-            }
-            console.log(index)
-            console.log(card.name)
-            console.log(card.link)
-            console.log(card.likes.length)
-          }) */
-        )
-      })
-  }, [])
-}
+            )
+          })
+        }
 
       </div>
     </>
