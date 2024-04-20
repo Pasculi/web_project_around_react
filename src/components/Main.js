@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import trash from '../images/vector__eliminar.png'
+
 import '../blocks/Main/Main.css'
-import {api} from '../components/utils/api.js'
+import { api } from '../components/utils/api.js'
+import Card from './Card.js'
+import ImagenPopup from './ImagenPopup.js'
 
 
 export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick, onCardClick }) {
@@ -9,7 +11,7 @@ export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatar
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
-  const [cards, setCards] = useState([])
+ 
 
 
   useEffect(() => {
@@ -23,15 +25,7 @@ export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatar
         console.war("Error: " + err);
       });
   }, []);
-  useEffect(() => {
-
-    api.getInitialCards()
-      .then((res) => {
-        setCards(res);
-
-      })
-  }, [])
-
+  
   return (
     <>
       <section className="profile">
@@ -52,34 +46,7 @@ export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatar
         </div>
         <button className="btn bt-place profile__author-button-add-place" onClick={onAddPlaceClick} id="btn_place"></button>
       </section>
-      <div className="container-card">
-        {
-          cards?.map((card, index) => {
-            return (
-              <div key={ index} className="card">
-                <div className="card__place">
-                  <button className="card__place-button--delete">
-                    <img className="card__place-imagen-trash" src={trash} alt="Eliminar" />
-                  </button>
-                  <div className="card__place-container-image">
-                    <img className="card__place-image-place"
-                      src={card.link}
-                      alt={card.name} onClick={onCardClick} />
-                  </div>
-                  <div className="card__place-footer">
-                    <h2 className="card__place-name">{ card.name}</h2>
-                    <div className="card__place-like-section">
-                      <button className="card__place-button--like"></button>
-                      <span className="card__place-like-counter">{card.likes.length }</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })
-        }
-
-      </div>
+      
     </>
   )
 }

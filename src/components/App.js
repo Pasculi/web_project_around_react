@@ -5,8 +5,8 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagenPopup'
-
-import { useState } from 'react';
+import { api } from '../components/utils/api';
+import { useEffect, useState } from 'react';
 import Card from './Card';
 
 
@@ -17,7 +17,8 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
-
+  const [cards, setCards] = useState([]);
+  
 
 
 
@@ -44,6 +45,14 @@ function App() {
     console.log('Click Card')
     setSelectedCard(true)
   }
+  useEffect(() => {
+
+    api.getInitialCards()
+      .then((res) => {
+        setCards(res);
+
+      })
+  }, [])
 
   
   return (
@@ -55,10 +64,19 @@ function App() {
           onAddPlaceClick={handleAddPlaceClick}
           onEditAvatarClick={handleEditAvatarClick}
           onCardClick={handleCardClick} />
-        
-        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+      
 
-        <Card />
+        <div className="container-card">
+          {
+            cards?.map((card, index) => {
+              console.log(card)
+              return (
+                <Card key={index} card={card} onCardClick={handleCardClick} />
+              )
+            })
+          }
+          {<ImagePopup card={selectedCard} onClose={closeAllPopups} />}
+        </div>
 
         <PopupWithForm name='profile' titulo='Edit Profile' form='form' button='Guardar' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
           <div className="popup__grupo-input">
