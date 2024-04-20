@@ -9,7 +9,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import { api } from '../components/Api.js';
 
 
-function remoteRemoveLike(idCard, buttonLike, callback) {
+function removeRemoteLike(idCard, buttonLike, callback) {
   return api.deleteLikeCard(idCard).then((res) => {
     buttonLike.classList.remove("card__place-button--like-active");
     callback(res)
@@ -61,7 +61,7 @@ function createCard(currentUserId) {
             popupImage.openPopUp(data.name, data.link)
           },
           remoteLike,
-          remoteRemoveLike,
+          removeRemoteLike,
           currentUserId,
           popupConfirm
 
@@ -155,7 +155,7 @@ function containerCard(sectionContainerCard) {
             popupImage.openPopUp(nameCard, linkCard)
           },
           remoteLike,
-          remoteRemoveLike,
+          removeRemoteLike,
           currentUserId,
           popupConfirm,
         );

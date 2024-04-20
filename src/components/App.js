@@ -75,7 +75,7 @@ function App() {
           {selectedCard && <ImagePopup card={selectedCard} onClose={closeAllPopups} />}
         </div>
 
-        <PopupWithForm name='profile' titulo='Edit Profile' form='form' button='Guardar' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm name='profile' titulo='Editar Perfil' form='form' button='Guardar' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
           <div className="popup__grupo-input">
             <input className="popup__input" type="text" name="name-user" id="popup__input-profile" minLength="2" maxLength="40" required placeholder="Jacques Cousteau" />
             <span className="popup__input-error popup__input-profile-error"></span>
@@ -87,7 +87,7 @@ function App() {
           </div>
         </PopupWithForm>
 
-        <PopupWithForm name='place' titulo='Edit Place' form='form' button='Guardar' isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm name='place' titulo='Editar Lugar' form='form' button='Guardar' isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
           <div className="popup__grupo-input">
             <input className="popup__input" type="text" name="name-place" id="popup__input-name-place" placeholder="Title"
               minLength="2" maxLength="30" required />
