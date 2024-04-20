@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react'
-
 import '../blocks/Main/Main.css'
 import { api } from '../components/utils/api.js'
-import Card from './Card.js'
-import ImagenPopup from './ImagenPopup.js'
 
 
-export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick, onCardClick }) {
+export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick}) {
   
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
  
-
-
   useEffect(() => {
     api.getUserInfo()
       .then(res => {
