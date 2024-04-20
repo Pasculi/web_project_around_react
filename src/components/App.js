@@ -18,7 +18,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
   const [cards, setCards] = useState([]);
-  
+
 
 
 
@@ -41,20 +41,18 @@ function App() {
     setIsAddPlacePopupOpen(true)
   }
 
-  const handleCardClick = () => {
-    console.log('Click Card')
-    setSelectedCard(true)
+  const handleCardClick = (card) => {
+    setSelectedCard(card)
   }
-  useEffect(() => {
 
+  useEffect(() => {
     api.getInitialCards()
       .then((res) => {
         setCards(res);
-
       })
   }, [])
 
-  
+
   return (
     <>
       <div className="root__container">
@@ -64,18 +62,17 @@ function App() {
           onAddPlaceClick={handleAddPlaceClick}
           onEditAvatarClick={handleEditAvatarClick}
           onCardClick={handleCardClick} />
-      
+
 
         <div className="container-card">
           {
             cards?.map((card, index) => {
-              console.log(card)
               return (
                 <Card key={index} card={card} onCardClick={handleCardClick} />
               )
             })
           }
-          {<ImagePopup card={selectedCard} onClose={closeAllPopups} />}
+          {selectedCard && <ImagePopup card={selectedCard} onClose={closeAllPopups} />}
         </div>
 
         <PopupWithForm name='profile' titulo='Edit Profile' form='form' button='Guardar' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>

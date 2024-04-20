@@ -2,9 +2,7 @@ import React from 'react';
 import imageClose from '../images/vector__close.png';
 
 const ImagenPopup = ({ onClose, card }) => {
-  console.log(card);
-
-  return (
+    return (
     <>
       <div className={`popup popup-img-close-image  ${card ? 'popup--show' : ''}`}>
         <div className="popup__image-content">
@@ -15,9 +13,9 @@ const ImagenPopup = ({ onClose, card }) => {
           <div className="popup__image-container-image">
             <figure className="popup__image-container">
               <img className="popup__image-url"
-                src={card?.link}
-                alt={card?.name} />
-              <figcaption className="popup__image-name-place">{card?.name}</figcaption>
+                src={card?.target.src}
+                alt={card?.target.alt} />
+              <figcaption className="popup__image-name-place">{card?.target.alt}</figcaption>
             </figure>
           </div>
         </div>
