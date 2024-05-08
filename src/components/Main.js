@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../blocks/Main/Main.css'
 import { api } from '../components/utils/api.js'
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 
 export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick}) {
@@ -8,6 +9,11 @@ export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatar
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+
+  console.log(currentUser.name)
+  
+ 
  
   useEffect(() => {
     api.getUserInfo()
