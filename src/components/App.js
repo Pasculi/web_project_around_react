@@ -62,8 +62,7 @@ function App() {
   return (
     <>
       <div className="root__container">
-        <CurrentUserContext.Provider value={{currentUser, setCurrentUser}}>
-          {console.log(CurrentUserContext)}
+        <CurrentUserContext.Provider value={{ currentUser }}>
         <Header />
         <Main
           onEditProfileClick={handleEditProfileClick}

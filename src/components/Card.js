@@ -1,7 +1,10 @@
-import React from 'react'
-import trash from '../images/vector__eliminar.png'
+import React, { useContext } from 'react';
+import trash from '../images/vector__eliminar.png';
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 const Card = ({ index, card, onCardClick }) => {
+  const { currentUser } = useContext(CurrentUserContext);
+  
   return (
     <>
       <div key={index} className="card">
