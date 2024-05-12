@@ -9,17 +9,20 @@ import { api } from '../components/utils/api';
 import { useEffect, useState } from 'react';
 import Card from './Card';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import EditProfilePopup from './EditProfilePopup';
 
 
 
 function App() {
 
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
   const [cards, setCards] = useState([]);
+  const [cardToDelete, setCardToDelete] = useState({});
   const [currentUser, setCurrentUser] = useState();
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
 
   function handleCardLike(card) {
     // Verifica una vez más si a esta tarjeta ya le han dado like
@@ -31,6 +34,10 @@ function App() {
     });
   }
 
+  function handleCardDelete(card) {
+    setCardToDelete(card);
+    
+  }
 
 
   useEffect(() => {
@@ -38,7 +45,12 @@ function App() {
       .then(data => setCurrentUser(data))
   }, [])
 
-
+  const handleUpdateUser = ({ name, about }) => {
+    api.updateUser({ name, about }).then((newUserData) => {
+      setCurrentUser(newUserData);
+      setIsEditProfilePopupOpen(false);
+    });
+  };
 
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false)
@@ -46,7 +58,6 @@ function App() {
     setIsEditAvatarPopupOpen(false)
     setSelectedCard(false)
   };
-
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true)
@@ -62,6 +73,8 @@ function App() {
   const handleCardClick = (card) => {
     setSelectedCard(card)
   }
+
+  
 
   useEffect(() => {
     api.getInitialCards()
@@ -82,7 +95,7 @@ function App() {
             onEditAvatarClick={handleEditAvatarClick}
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
-
+            onCardDelete={handleCardDelete}
           />
 
 
@@ -90,24 +103,19 @@ function App() {
             {
               cards?.map((card, index) => {
                 return (
-                  <Card key={index} card={card} onCardClick={handleCardClick} onCardLike={handleCardLike} />
+                  <Card
+                    key={index}
+                    card={card}
+                    onCardClick={handleCardClick}
+                    onCardLike={handleCardLike}
+                    onCardDelete={handleCardDelete} />
                 )
               })
             }
             {selectedCard && <ImagePopup card={selectedCard} onClose={closeAllPopups} />}
           </div>
 
-          <PopupWithForm name='profile' titulo='Editar Perfil' form='form' button='Guardar' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
-            <div className="popup__grupo-input">
-              <input className="popup__input" type="text" name="name-user" id="popup__input-profile" minLength="2" maxLength="40" required placeholder="Jacques Cousteau" />
-              <span className="popup__input-error popup__input-profile-error"></span>
-            </div>
-
-            <div className="popup__grupo-input">
-              <input className="popup__input" type="text" name="job-user" id="popup__input-about" minLength="2" maxLength="200" required placeholder="Explorador" />
-              <span className="popup__input-error popup__input-about-error"></span>
-            </div>
-          </PopupWithForm>
+          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
 
           <PopupWithForm name='place' titulo='Editar Lugar' form='form' button='Guardar' isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
             <div className="popup__grupo-input">
@@ -130,7 +138,15 @@ function App() {
             </div>
           </PopupWithForm>
 
-          <PopupWithForm name='confirm' titulo='¿Estas Seguro?' button='Sí' form='form-confirm' onClose={closeAllPopups} />
+          <PopupWithForm
+            name='confirm'
+            titulo='¿Estas Seguro?'
+            button='Sí'
+            form='form-confirm'
+            onClose={closeAllPopups}
+
+          />
+          
 
 
 

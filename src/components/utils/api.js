@@ -26,7 +26,7 @@ class Api {
       .then(this.handleResponse)
       .catch(error => console.error('Error al obtener la información del usuario:', error));
   }
-  updateUser(name, about) {
+  updateUser({name, about}) {
     return fetch(`${this._baseUrl}/users/me`, {
       headers:
         this._headers,

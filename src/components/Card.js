@@ -2,16 +2,16 @@ import React, { useContext } from 'react';
 import trash from '../images/vector__eliminar.png';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-const Card = ({ index, card, onCardClick, onCardLike }) => {
+const Card = ({ index, card, onCardClick, onCardLike, onCardDelete }) => {
 
   const { currentUser } = useContext(CurrentUserContext);
 
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = currentUser  && card.owner._id === currentUser._id;
   const cardDeleteButtonClassName = (
     `card__place-button--delete ${isOwn ? 'card__place-button--delete' : 'card__place-button--delete-hidden'}`
   );
 
-  const isLiked = card.likes.some(i => i._id === currentUser._id);
+  const isLiked = currentUser && card.likes.some(i => i._id === currentUser._id);
   const cardLikeButtonClassName = `card__place-button--like ${isLiked ? 'card__place-button--like-active' : ''}`;
 
   const handleLikeClick = () => {
@@ -24,7 +24,7 @@ const Card = ({ index, card, onCardClick, onCardLike }) => {
         <div className="card__place">
           <button className="card__place-button--delete">
 
-            <img className={cardDeleteButtonClassName} src={trash} alt="Eliminar" />
+            <img className={cardDeleteButtonClassName} onClick={() => onCardDelete(card)} src={trash} alt="Eliminar" />
           </button>
           <div className="card__place-container-image">
             <img className="card__place-image-place"
