@@ -7,6 +7,11 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("")
 
+  useEffect(() => {
+    setName(currentUser?.name );
+    setDescription(currentUser?.about );
+  }, [currentUser])
+
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
@@ -14,10 +19,6 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser }) => {
     setDescription(event.target.value);
   };
 
-  useEffect(() => {
-    setName(currentUser?.name );
-    setDescription(currentUser?.about );
-  }, [currentUser])
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -28,14 +29,36 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser }) => {
   };
 
   return (
-    <PopupWithForm name='profile' titulo='Editar Perfil' form='form' button='Guardar' onSubmit={handleSubmit} isOpen={isOpen} onClose={onClose}>
-      <div className="popup__grupo-input">
-        <input className="popup__input" type="text" name="name-user" id="popup__input-profile" minLength="2" maxLength="40" required value={name} onChange={handleNameChange} />
+    <PopupWithForm
+      name='profile'
+      titulo='Editar Perfil'
+      form='form' button='Guardar'
+      onSubmit={handleSubmit}
+      isOpen={isOpen}
+      onClose={onClose}>
+      
+      <div
+        className="popup__grupo-input">
+        <input
+          className="popup__input"
+          type="text" name="name-user"
+          id="popup__input-profile"
+          minLength="2" maxLength="40"
+          value={name || ''}
+          onChange={handleNameChange} />
         <span className="popup__input-error popup__input-profile-error"></span>
       </div>
 
       <div className="popup__grupo-input">
-        <input className="popup__input" type="text" name="job-user" id="popup__input-about" minLength="2" maxLength="200" required value={description} onChange={handleDescriptionChange} />
+        <input
+          className="popup__input"
+          type="text"
+          name="job-user"
+          id="popup__input-about"
+          minLength="2"
+          maxLength="200"
+          value={description || ''}
+          onChange={handleDescriptionChange} />
         <span className="popup__input-error popup__input-about-error"></span>
       </div>
     </PopupWithForm>

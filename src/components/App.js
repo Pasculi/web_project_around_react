@@ -46,10 +46,14 @@ function App() {
   }, [])
 
   const handleUpdateUser = ({ name, about }) => {
-    api.updateUser({ name, about }).then((newUserData) => {
+    api.updateUser({ name, about })
+      .then((newUserData) => {
       setCurrentUser(newUserData);
       setIsEditProfilePopupOpen(false);
-    });
+      })
+      .catch((err) => {
+      console.warn(err)
+    })
   };
 
   const closeAllPopups = () => {
@@ -115,25 +119,57 @@ function App() {
             {selectedCard && <ImagePopup card={selectedCard} onClose={closeAllPopups} />}
           </div>
 
-          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+          <EditProfilePopup
+            isOpen={isEditProfilePopupOpen}
+            onClose={closeAllPopups}
+            onUpdateUser={handleUpdateUser} />
 
-          <PopupWithForm name='place' titulo='Editar Lugar' form='form' button='Guardar' isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+          <PopupWithForm
+            name='place'
+            titulo='Editar Lugar'
+            form='form'
+            button='Guardar'
+            isOpen={isAddPlacePopupOpen}
+            onClose={closeAllPopups}>
             <div className="popup__grupo-input">
-              <input className="popup__input" type="text" name="name-place" id="popup__input-name-place" placeholder="Title"
-                minLength="2" maxLength="30" required />
+              <input
+                className="popup__input"
+                type="text" name="name-place"
+                id="popup__input-name-place"
+                placeholder="Title"
+                minLength="2"
+                maxLength="30"
+                required />
               <span className="popup__input-error popup__input-name-place-error"></span>
             </div>
 
             <div className="popup__grupo-input">
-              <input className="popup__input" type="url" name="url-place" id="popup__input-url-place"
-                placeholder="Enlace a la imagen" required />
+              <input
+                className="popup__input"
+                type="url"
+                name="url-place"
+                id="popup__input-url-place"
+                placeholder="Enlace a la imagen"
+                required />
               <span className="popup__input-error popup__input-url-place-error"></span>
             </div>
           </PopupWithForm>
 
-          <PopupWithForm name='avatar-edit' titulo='Cambiar foto de perfil' form='form-avatar' button='Guardar' isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+          <PopupWithForm
+            name='avatar-edit'
+            titulo='Cambiar foto de perfil'
+            form='form-avatar'
+            button='Guardar'
+            isOpen={isEditAvatarPopupOpen}
+            onClose={closeAllPopups}>
             <div className="popup__grupo-input">
-              <input className="popup__input" type="url" name="url-avatar" id="popup__input-url-avatar" placeholder="Avatar" required />
+              <input
+                className="popup__input"
+                type="url"
+                name="url-avatar"
+                id="popup__input-url-avatar"
+                placeholder="Avatar"
+                required />
               <span className="popup__input-error popup__input-url-avatar-error"></span>
             </div>
           </PopupWithForm>
@@ -146,12 +182,7 @@ function App() {
             onClose={closeAllPopups}
 
           />
-          
-
-
-
           <Footer />
-
         </CurrentUserContext.Provider>
 
       </div>
