@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import Card from './Card';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 
 
 
@@ -23,6 +24,7 @@ function App() {
   const [cardToDelete, setCardToDelete] = useState({});
   const [currentUser, setCurrentUser] = useState();
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  
 
   function handleCardLike(card) {
     // Verifica una vez más si a esta tarjeta ya le han dado like
@@ -87,6 +89,12 @@ function App() {
       })
   }, [])
 
+  function handleUpdateAvatar({ avatar }) {
+    api.updateAvatar(avatar);
+    console.log(avatar)
+       setCurrentUser({ ...currentUser, avatar: avatar });
+    closeAllPopups();
+  }
 
   return (
     <>
@@ -123,6 +131,8 @@ function App() {
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser} />
+          
+          <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
 
           <PopupWithForm
             name='place'
@@ -155,24 +165,7 @@ function App() {
             </div>
           </PopupWithForm>
 
-          <PopupWithForm
-            name='avatar-edit'
-            titulo='Cambiar foto de perfil'
-            form='form-avatar'
-            button='Guardar'
-            isOpen={isEditAvatarPopupOpen}
-            onClose={closeAllPopups}>
-            <div className="popup__grupo-input">
-              <input
-                className="popup__input"
-                type="url"
-                name="url-avatar"
-                id="popup__input-url-avatar"
-                placeholder="Avatar"
-                required />
-              <span className="popup__input-error popup__input-url-avatar-error"></span>
-            </div>
-          </PopupWithForm>
+         
 
           <PopupWithForm
             name='confirm'
