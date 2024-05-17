@@ -3,7 +3,7 @@ import '../blocks/Main/Main.css'
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 
-export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick, onCardLike }) {
+export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick }) {
 
   const { currentUser } = useContext(CurrentUserContext);
 
