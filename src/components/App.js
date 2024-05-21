@@ -75,19 +75,21 @@ function App() {
     setSelectedCard(card)
   }
 
+  
+  useEffect(() => {
+    api.getInitialCards()
+    .then((res) => {
+      setCards(res);
+    })
+  }, [])
+  
   const handleAddPlaceSubmit = ({ name, link }) => {
-    api.addCard({ name, link }).then((newCard) => {
+    api.addCard({ name, link })
+      .then((newCard) => {
       setCards([newCard, ...cards]);
       setIsAddPlacePopupOpen(false);
     });
   };
-
-  useEffect(() => {
-    api.getInitialCards()
-      .then((res) => {
-        setCards(res);
-      })
-  }, [])
 
   function handleUpdateAvatar({ avatar }) {
     api.updateAvatar(avatar);

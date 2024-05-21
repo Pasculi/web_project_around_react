@@ -52,7 +52,7 @@ class Api {
       .then(this.handleResponse)
       .catch(error => console.error('Error al actualizar al avatar:', error));
   }
-  addCard(name, link) {
+  addCard({name, link}) {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: 'POST',

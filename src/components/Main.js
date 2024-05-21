@@ -6,8 +6,6 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick }) {
 
   const { currentUser } = useContext(CurrentUserContext);
-
-
   
   return (
     <>
