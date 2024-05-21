@@ -1,9 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import '../blocks/Main/Main.css'
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import Card from './Card';
+import ImagePopup from './ImagenPopup'
 
 
-export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick }) {
+export default function Main({ cards, onEditProfileClick, onAddPlaceClick, onEditAvatarClick, onCardClick, onCardLike, onCardDelete, onClose }) {
+
+  const [selectedCard, setSelectedCard] = useState(false);
+
 
   const { currentUser } = useContext(CurrentUserContext);
   
@@ -27,6 +32,21 @@ export default function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatar
         </div>
         <button className="btn bt-place profile__author-button-add-place" onClick={onAddPlaceClick} id="btn_place"></button>
       </section>
+      <div className="container-card">
+        {
+          cards?.map((card, index) => {
+            return (
+              <Card
+                key={index}
+                card={card}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete} />
+            )
+          })
+        }
+        {selectedCard && <ImagePopup card={selectedCard} onClose={onClose} />}
+      </div>
       
     </>
   )

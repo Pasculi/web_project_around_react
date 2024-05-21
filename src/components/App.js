@@ -1,13 +1,10 @@
-
 import '../index.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
-import ImagePopup from './ImagenPopup'
 import { api } from '../components/utils/api';
 import { useEffect, useState } from 'react';
-import Card from './Card';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -17,15 +14,17 @@ import AddPlacePopup from './AddPlacePopup';
 
 function App() {
 
-
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(false);
   const [cards, setCards] = useState([]);
-  const [cardToDelete, setCardToDelete] = useState({});
+  const [selectedCard, setSelectedCard] = useState(false);
   const [currentUser, setCurrentUser] = useState();
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [cardToDelete, setCardToDelete] = useState({});
 
+  function handleCardDelete(card) {
+    setCardToDelete(card);
+  }
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -34,9 +33,8 @@ function App() {
     });
   }
 
-  function handleCardDelete(card) {
-    setCardToDelete(card);
-  }
+  
+
   useEffect(() => {
     api.getUserInfo()
       .then(data => setCurrentUser(data))
@@ -98,7 +96,6 @@ function App() {
     closeAllPopups();
   }
 
-
   return (
     <>
       <div className="root__container">
@@ -108,27 +105,12 @@ function App() {
             onEditProfileClick={handleEditProfileClick}
             onAddPlaceClick={handleAddPlaceClick}
             onEditAvatarClick={handleEditAvatarClick}
+            cards={cards}
+            onClose={closeAllPopups}
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
           />
-
-
-          <div className="container-card">
-            {
-              cards?.map((card, index) => {
-                return (
-                  <Card
-                    key={index}
-                    card={card}
-                    onCardClick={handleCardClick}
-                    onCardLike={handleCardLike}
-                    onCardDelete={handleCardDelete} />
-                )
-              })
-            }
-            {selectedCard && <ImagePopup card={selectedCard} onClose={closeAllPopups} />}
-          </div>
 
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
