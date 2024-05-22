@@ -131,39 +131,6 @@ function App() {
           />
 
           <PopupWithForm
-            name='place'
-            titulo='Editar Lugar'
-            form='form'
-            button='Guardar'
-            isOpen={isAddPlacePopupOpen}
-            onClose={closeAllPopups}>
-            <div className="popup__grupo-input">
-              <input
-                className="popup__input"
-                type="text" name="name-place"
-                id="popup__input-name-place"
-                placeholder="Title"
-                minLength="2"
-                maxLength="30"
-                required />
-              <span className="popup__input-error popup__input-name-place-error"></span>
-            </div>
-
-            <div className="popup__grupo-input">
-              <input
-                className="popup__input"
-                type="url"
-                name="url-place"
-                id="popup__input-url-place"
-                placeholder="Enlace a la imagen"
-                required />
-              <span className="popup__input-error popup__input-url-place-error"></span>
-            </div>
-          </PopupWithForm>
-
-
-
-          <PopupWithForm
             name='confirm'
             titulo='¿Estas Seguro?'
             button='Sí'
