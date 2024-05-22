@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import '../blocks/Main/Main.css'
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Card from './Card';
-import ImagePopup from './ImagenPopup'
+import ImagePopup from './ImagePopup'
 
 
 export default function Main({ cards, onEditProfileClick, onAddPlaceClick, onEditAvatarClick, onCardClick, onCardLike, onCardDelete, onClose }) {
