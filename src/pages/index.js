@@ -6,7 +6,7 @@ import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import { api } from '../components/Api.js';
+import api  from '../utils/api.js';
 
 
 function removeRemoteLike(idCard, buttonLike, callback) {
